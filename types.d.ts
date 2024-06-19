@@ -1,6 +1,6 @@
 import React from "react";
 
-export interface MediaQueryProps   {
+export interface MediaQueryProps  {
   orientation?: 'landscape' | 'portrait',
   minResolution?: number | `${number}dppx`,
   maxResolution?: number | `${number}dppx`,
