@@ -10,3 +10,7 @@ export type MediaQueryProps = {
   maxHeight?: string,
   children: React.ReactNode | ((matches: boolean) => React.ReactNode);
 }
+
+export type inputQuery = {
+  query: string,
+}
