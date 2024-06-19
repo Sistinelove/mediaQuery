@@ -3,11 +3,11 @@ import {useMediaQuery} from "./customHook/useMediaQuery";
 import MediaQuery from "./customHook/MediaQuery";
 
 const App: React.FC = () => {
-  const isDesktopOrLaptop = useMediaQuery('(min-width: 1224px)');
-  const isBigScreen = useMediaQuery('(min-width: 1824px)');
-  const isTabletOrMobile = useMediaQuery('(max-width: 1224px)');
-  const isPortrait = useMediaQuery('(orientation: portrait)');
-  const isRetina = useMediaQuery('(min-resolution: 2dppx)');
+  const isDesktopOrLaptop = useMediaQuery({query: '(min-width: 1224px)'})
+  const isBigScreen = useMediaQuery({query: '(min-width: 1824px)'})
+  const isTabletOrMobile = useMediaQuery({query: '(max-width: 1224px)'})
+  const isPortrait = useMediaQuery({query: '(orientation: portrait)'})
+  const isRetina = useMediaQuery({query: '(min-resolution: 2dppx)'})
 
   return (
     <div>
@@ -26,7 +26,8 @@ const App: React.FC = () => {
         </MediaQuery>
       </MediaQuery>
       <MediaQuery minResolution="2dppx">
-        {(matches: boolean) => matches ? <p>You are retina (using MediaQuery component)</p> : <p>You are not retina (using MediaQuery component)</p>}
+        {(matches: boolean) => matches ? <p>You are retina (using MediaQuery component)</p> :
+          <p>You are not retina (using MediaQuery component)</p>}
       </MediaQuery>
     </div>
   );
