@@ -1,6 +1,6 @@
 import React from "react";
 
-export type MediaQueryProps = {
+export interface MediaQueryProps   {
   orientation?: 'landscape' | 'portrait',
   minResolution?: number | `${number}dppx`,
   maxResolution?: number | `${number}dppx`,
@@ -11,6 +11,6 @@ export type MediaQueryProps = {
   children: React.ReactNode | ((matches: boolean) => React.ReactNode);
 }
 
-export type inputQuery = {
-  query: string,
+export interface inputQuery {
+  query: string;
 }
