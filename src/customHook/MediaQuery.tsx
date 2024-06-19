@@ -1,33 +1,38 @@
 import React from "react";
 import {MediaQueryProps} from "../../types";
 import {useMediaQuery} from "./useMediaQuery";
+import {utilMediaQueryString} from "../utilits/utils";
 
-const MediaQuery: React.FC<MediaQueryProps> = ({
- orientation,
- minResolution,
- maxResolution,
- minWidth,
- maxWidth,
- minHeight,
- maxHeight,
- children
-}) => {
-  let res = "";
-  if (orientation) res += `(orientation: ${orientation})`;
-  if (minResolution) res += `(min-resolution: ${minResolution})`;
-  if (maxResolution) res += `(max-resolution: ${maxResolution})`;
-  if (minWidth) res += `(min-width: ${minWidth}px)`;
-  if (maxWidth) res += `(max-width: ${maxWidth}px)`;
-  if (minHeight) res += `(min-height: ${minHeight}px)`;
-  if (maxHeight) res += `(max-height: ${maxHeight}px)`;
+export const MediaQuery: React.FC<MediaQueryProps> = (props) => {
+  const {
+    orientation,
+    minResolution,
+    maxResolution,
+    minWidth,
+    maxWidth,
+    minHeight,
+    maxHeight,
+    children
+  } = props;
+  if (
+    !orientation &&
+    !minResolution &&
+    !maxResolution &&
+    !minWidth &&
+    !maxWidth &&
+    !minHeight &&
+    !maxHeight
+  ) {
+    throw new Error("Минимум 1 проп");
+  }
 
-  const matches = useMediaQuery(res);
+  const res = utilMediaQueryString(props);
+  const matches = useMediaQuery({query: res});
   return (
     <>
       {
         typeof children === 'function' ? children(matches) : matches ? children : null
-      }</>
-  )
+      }
+    </>
+  );
 }
-
-export default MediaQuery;
