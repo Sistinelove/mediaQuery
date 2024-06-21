@@ -6,8 +6,8 @@ export interface MediaQueryProps  {
   maxResolution?: number | `${number}dppx`,
   minWidth?: number,
   maxWidth?: number,
-  minHeight?: string,
-  maxHeight?: string,
+  minHeight?: number,
+  maxHeight?: number,
   children: React.ReactNode | ((matches: boolean) => React.ReactNode);
 }
 
