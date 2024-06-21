@@ -1,9 +1,9 @@
 import React from "react";
-import {MediaQueryProps} from "../../types";
+import { MediaQueryPropsMinOne} from "../../types";
 import {useMediaQuery} from "./useMediaQuery";
 import {utilMediaQueryString} from "../utilits/utils";
 
-export const MediaQuery: React.FC<MediaQueryProps> = (props) => {
+export const MediaQuery: React.FC<MediaQueryPropsMinOne> = (props) => {
   const {
     orientation,
     minResolution,
@@ -14,20 +14,19 @@ export const MediaQuery: React.FC<MediaQueryProps> = (props) => {
     maxHeight,
     children
   } = props;
-  if (
-    !orientation &&
-    !minResolution &&
-    !maxResolution &&
-    !minWidth &&
-    !maxWidth &&
-    !minHeight &&
-    !maxHeight
-  ) {
-    throw new Error("Минимум 1 проп");
-  }
 
-  const res = utilMediaQueryString(props);
-  const matches = useMediaQuery({query: res});
+  const matches = useMediaQuery({
+    query: utilMediaQueryString({
+      orientation,
+      minResolution,
+      maxResolution,
+      minWidth,
+      maxWidth,
+      minHeight,
+      maxHeight,
+      children
+    })
+  });
   return (
     <>
       {
