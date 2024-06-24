@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import {InputQuery} from "../../types";
 
 export const useMediaQuery = ({query}: InputQuery) => {
-    const [isMatches, setIsMatches] = useState<boolean>(() => {
+    const [isMatches, setIsMatches] = useState(() => {
       return typeof window !== "undefined" ? window.matchMedia(query).matches : false
     })
 
