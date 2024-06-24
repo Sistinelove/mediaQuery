@@ -1,10 +1,8 @@
 import {MediaQueryProps} from "../../types";
 
-
 const parseKey = (str: string): string => {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 };
-
 const formatMediaQuery = (key:string, value: any): string => {
   switch (key) {
     case 'orientation':

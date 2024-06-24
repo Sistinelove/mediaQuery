@@ -1,8 +1,10 @@
 {
-  "name": "@sistinelove/react-response",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@sistinelove/react-responsive",
+  "version": "1.1.8",
+  "description": "Responsive utilities for React",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "build": "rollup -c",
     "test": "echo \"Error: no test specified\" && exit 1"
