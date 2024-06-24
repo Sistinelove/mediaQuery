@@ -17,6 +17,6 @@ export type MediaQueryPropsMinOne = AtLeastOnePropertyOf<Omit<MediaQueryProps,'c
   children: React.ReactNode | ((matches: boolean) => React.ReactNode);
 };
 
-export interface inputQuery {
+export interface InputQuery {
   query: string;
 }

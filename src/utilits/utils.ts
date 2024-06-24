@@ -1,38 +1,34 @@
-// utils.ts
-import { MediaQueryProps } from "../../types";
+import {MediaQueryProps} from "../../types";
 
-export const utilMediaQueryString = ({
-  orientation,
-  minResolution,
-  maxResolution,
-  minWidth,
-  maxWidth,
-  minHeight,
-  maxHeight,
-}: MediaQueryProps): string => {
-  let res = "";
-  switch (true) {
-    case !!orientation:
-      res += `(orientation: ${orientation})`;
-      break;
-    case !!minResolution:
-      res += `(min-resolution: ${minResolution})`;
-      break;
-    case !!maxResolution:
-      res += `(max-resolution: ${maxResolution})`;
-      break;
-    case !!minWidth:
-      res += `(min-width: ${minWidth}px)`;
-      break;
-    case !!maxWidth:
-      res += `(max-width: ${maxWidth}px)`;
-      break;
-    case !!minHeight:
-      res += `(min-height: ${minHeight}px)`;
-      break;
-    case !!maxHeight:
-      res += `(max-height: ${maxHeight}px)`;
-      break;
+
+const parseKey = (str: string): string => {
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+};
+
+const formatMediaQuery = (key: string, value: any): string => {
+  switch (key) {
+    case 'orientation':
+      return `orientation: ${value}`;
+    case 'minResolution':
+    case 'maxResolution':
+      return `${parseKey(key)}: ${typeof value === 'number' ? value + 'dppx' : value}`;
+    case 'minWidth':
+    case 'maxWidth':
+    case 'minHeight':
+    case 'maxHeight':
+      return `${parseKey(key)}: ${value}px`;
+    default:
+      return '';
   }
-  return res;
+};
+
+export const utilMediaQueryString = (props: MediaQueryProps): string => {
+  const mediaQueries = Object.entries(props).map(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      return `(${formatMediaQuery(key, value)})`;
+    }
+    return '';
+  });
+
+  return mediaQueries.filter(Boolean).join(' and ');
 };
